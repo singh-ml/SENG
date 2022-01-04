@@ -18,8 +18,8 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
+from nsgd import *
 import torch.distributed as dist
-import torch.nn.functional as F
 import torch.backends.cudnn as cudnn
 import torch.multiprocessing as mp
 import torch.utils.data
@@ -48,6 +48,8 @@ from seng import SENG
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10 Training')
 parser.add_argument('--datadir', default='/datasets', help='Place where data are stored')
 parser.add_argument('--lr', default=0.05, type=float, help='learning rate')
+parser.add_argument('--irho', default=10.0, type=float, help='inverse rho')
+parser.add_argument('--bh', default=32, type=int, help='hessian batch size')
 parser.add_argument('--lr-decay-epoch', default=30, type=int, help='learning rate decay at n epoches')
 parser.add_argument('--lr-decay-rate', default=0.1, type=float, help='how much learning rate decays')
 parser.add_argument('--lr-scheme', default='staircase', type=str, help='how much learning rate decays')
@@ -247,7 +249,8 @@ def main_worker(gpu, ngpus_per_node, args):
     else:
         criterion = nn.CrossEntropyLoss().cuda(args.gpu)
     optimizer = optim.SGD(net.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
-    preconditioner = SENG(net, args.damping, update_freq=args.curvature_update_freq, verbose=args.verbose, subsample=args.fim_subsample, im_size_threshold=args.im_size_threshold, col_sample_size=args.fim_col_sample_size)
+    preconditionar = NSGD(net.parameters(), args.irho, col=-1)
+    #preconditioner = SENG(net, args.damping, update_freq=args.curvature_update_freq, verbose=args.verbose, subsample=args.fim_subsample, im_size_threshold=args.im_size_threshold, col_sample_size=args.fim_col_sample_size)
 
     pending_batch = None
 
@@ -258,12 +261,14 @@ def main_worker(gpu, ngpus_per_node, args):
         correct = 0
         total = 0
         epoch_start_time = time.time()
-
+        trainsetS = torch.utils.data.Subset(trainset, range(args.batch_size*2))
+        gradloader = torch.utils.data.DataLoader(trainsetS, batch_size=args.bh, shuffle=True, num_workers=2)
+        preconditionar.nyscurve(gradloader, net, criterion, device='cuda')
         for batch_idx, (inputs, targets) in enumerate(trainloader):
-            num_iter = preconditioner.iteration_counter
+            #num_iter = preconditioner.iteration_counter
             epoch_for_adjust = epoch + (batch_idx + 1) / len(trainloader)
             adjust_learning_rate(optimizer, epoch_for_adjust, args)
-            adjust_damping(preconditioner, epoch_for_adjust, args)
+            #adjust_damping(preconditioner, epoch_for_adjust, args)
             inputs = inputs.cuda(args.gpu, non_blocking=True)
             targets = targets.cuda(args.gpu, non_blocking=True)
 
@@ -274,7 +279,7 @@ def main_worker(gpu, ngpus_per_node, args):
 
             loss.backward()
 
-            preconditioner.step()
+            preconditionar.prestep()
             optimizer.step()
 
             train_loss += loss.item()
@@ -284,10 +289,10 @@ def main_worker(gpu, ngpus_per_node, args):
 
             this_batch_time = time.time() - epoch_start_time
 
-            if args.verbose:
+            '''if args.verbose:
                 if num_iter % 50 == 0:
                     rank0_print('%3d-%4d   %2.1e  %2.1e  %2.1e  %2.1e   %2.1e  %3.1f%%' %
-                    (epoch, num_iter, loss.item(), preconditioner.state['normg'], preconditioner.state['normd'],  preconditioner.state['adg'], preconditioner.damping, correct / total * 100))
+                    (epoch, num_iter, loss.item(), preconditioner.state['normg'], preconditioner.state['normd'],  preconditioner.state['adg'], preconditioner.damping, correct / total * 100))'''
         return train_loss / len(trainloader), correct / total
 
 

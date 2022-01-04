@@ -53,6 +53,8 @@ parser.add_argument('--lr-decay-rate', default=0.1, type=float, help='how much l
 parser.add_argument('--lr-scheme', default='staircase', type=str, help='how much learning rate decays')
 parser.add_argument('--batch-size', '-b', default=256, type=int, help='batch size across all nodes')
 parser.add_argument('--epoch', default=100, type=int, help='epoch')
+parser.add_argument('--beta1', default=0.9, type=float, help='beta1')
+parser.add_argument('--beta2', default=0.999, type=float, help='beta2')
 parser.add_argument('--momentum', default=0.9, type=float, help='momentum')
 parser.add_argument('--weight-decay', default=5e-4, type=float, help='weight decay')
 parser.add_argument('--damping', default=0.05, type=float, help='initial damping')
@@ -246,8 +248,8 @@ def main_worker(gpu, ngpus_per_node, args):
         criterion = LabelSmoothingLoss(args.label_smoothing).cuda(args.gpu)
     else:
         criterion = nn.CrossEntropyLoss().cuda(args.gpu)
-    optimizer = optim.SGD(net.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
-    preconditioner = SENG(net, args.damping, update_freq=args.curvature_update_freq, verbose=args.verbose, subsample=args.fim_subsample, im_size_threshold=args.im_size_threshold, col_sample_size=args.fim_col_sample_size)
+    optimizer = optim.Adam(net.parameters(), lr=args.lr, betas=(args.beta1,args.beta2), weight_decay=args.weight_decay)
+    #preconditioner = SENG(net, args.damping, update_freq=args.curvature_update_freq, verbose=args.verbose, subsample=args.fim_subsample, im_size_threshold=args.im_size_threshold, col_sample_size=args.fim_col_sample_size)
 
     pending_batch = None
 
@@ -260,10 +262,10 @@ def main_worker(gpu, ngpus_per_node, args):
         epoch_start_time = time.time()
 
         for batch_idx, (inputs, targets) in enumerate(trainloader):
-            num_iter = preconditioner.iteration_counter
-            epoch_for_adjust = epoch + (batch_idx + 1) / len(trainloader)
-            adjust_learning_rate(optimizer, epoch_for_adjust, args)
-            adjust_damping(preconditioner, epoch_for_adjust, args)
+            #num_iter = preconditioner.iteration_counter
+            #epoch_for_adjust = epoch + (batch_idx + 1) / len(trainloader)
+            #adjust_learning_rate(optimizer, epoch_for_adjust, args)
+            #adjust_damping(preconditioner, epoch_for_adjust, args)
             inputs = inputs.cuda(args.gpu, non_blocking=True)
             targets = targets.cuda(args.gpu, non_blocking=True)
 
@@ -274,7 +276,7 @@ def main_worker(gpu, ngpus_per_node, args):
 
             loss.backward()
 
-            preconditioner.step()
+            #preconditioner.step()
             optimizer.step()
 
             train_loss += loss.item()
@@ -284,10 +286,10 @@ def main_worker(gpu, ngpus_per_node, args):
 
             this_batch_time = time.time() - epoch_start_time
 
-            if args.verbose:
+            '''if args.verbose:
                 if num_iter % 50 == 0:
                     rank0_print('%3d-%4d   %2.1e  %2.1e  %2.1e  %2.1e   %2.1e  %3.1f%%' %
-                    (epoch, num_iter, loss.item(), preconditioner.state['normg'], preconditioner.state['normd'],  preconditioner.state['adg'], preconditioner.damping, correct / total * 100))
+                    (epoch, num_iter, loss.item(), preconditioner.state['normg'], preconditioner.state['normd'],  preconditioner.state['adg'], preconditioner.damping, correct / total * 100))'''
         return train_loss / len(trainloader), correct / total
 
 

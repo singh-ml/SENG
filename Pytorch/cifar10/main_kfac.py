@@ -43,7 +43,7 @@ from models.vgg_ex import vgg16,vgg11,vgg16_bn
 from utils.dist_utils import rank0_print
 from label_smoothing_loss import LabelSmoothingLoss
 
-from seng import SENG
+from kfac import *
 
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10 Training')
 parser.add_argument('--datadir', default='/datasets', help='Place where data are stored')
@@ -247,7 +247,7 @@ def main_worker(gpu, ngpus_per_node, args):
     else:
         criterion = nn.CrossEntropyLoss().cuda(args.gpu)
     optimizer = optim.SGD(net.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
-    preconditioner = SENG(net, args.damping, update_freq=args.curvature_update_freq, verbose=args.verbose, subsample=args.fim_subsample, im_size_threshold=args.im_size_threshold, col_sample_size=args.fim_col_sample_size)
+    preconditioner = KFAC(net, 0.1, update_freq=args.curvature_update_freq)
 
     pending_batch = None
 
@@ -260,10 +260,8 @@ def main_worker(gpu, ngpus_per_node, args):
         epoch_start_time = time.time()
 
         for batch_idx, (inputs, targets) in enumerate(trainloader):
-            num_iter = preconditioner.iteration_counter
             epoch_for_adjust = epoch + (batch_idx + 1) / len(trainloader)
             adjust_learning_rate(optimizer, epoch_for_adjust, args)
-            adjust_damping(preconditioner, epoch_for_adjust, args)
             inputs = inputs.cuda(args.gpu, non_blocking=True)
             targets = targets.cuda(args.gpu, non_blocking=True)
 
@@ -284,10 +282,10 @@ def main_worker(gpu, ngpus_per_node, args):
 
             this_batch_time = time.time() - epoch_start_time
 
-            if args.verbose:
+            '''if args.verbose:
                 if num_iter % 50 == 0:
                     rank0_print('%3d-%4d   %2.1e  %2.1e  %2.1e  %2.1e   %2.1e  %3.1f%%' %
-                    (epoch, num_iter, loss.item(), preconditioner.state['normg'], preconditioner.state['normd'],  preconditioner.state['adg'], preconditioner.damping, correct / total * 100))
+                    (epoch, num_iter, loss.item(), preconditioner.state['normg'], preconditioner.state['normd'],  preconditioner.state['adg'], preconditioner.damping, correct / total * 100))'''
         return train_loss / len(trainloader), correct / total
 
 
