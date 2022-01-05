@@ -6,7 +6,7 @@ do
 		do
 			for dm in 0.8 1.0 1.2
 			do
-				python main_ekfac.py --epoch $me --arch 'resnet18' --lr-decay-epoch $me --damping $dm --trainset 'cifar100' --datadir /data/singh/data/ --lr $lr --weight-decay $wd --lr-scheme 'cosine' --gpu 2| tee ekfac_cifar100-resnet18-lr$lr-me$me-wd$wd-dm$dm-f100.hist
+				python main_ekfac.py --epoch $me --arch 'resnet18' --lr-decay-epoch $me --damping $dm --trainset 'cifar100' --datadir /data/singh/data/ --lr $lr --weight-decay $wd --lr-scheme 'cosine' --gpu 0| tee ekfac_cifar100-resnet18-lr$lr-me$me-wd$wd-dm$dm-f100.hist
 			done
 		done
 	done
