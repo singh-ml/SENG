@@ -1,0 +1,14 @@
+Use GPU: 0 for training
+==> Running with ['main_adam.py', '--epoch', '85', '--arch', 'resnet50', '--lr-decay-epoch', '85', '--trainset', 'cifar10', '--datadir', '/data/ghighdim/singh/data/', '--lr', '5e-2', '--weight-decay', '1e-4', '--beta1', '0.99', '--beta2', '0.999', '--gpu', '0']
+==> Building model..
+==> Preparing data..
+Files already downloaded and verified
+Files already downloaded and verified
+Memory peak: 17946863104 Bytes
+Epoch  testloss  testacc  trainloss  trainacc  time
+   1   2.2340     17.920  3.6250    12.992  25.87
+   2   1.9018     30.130  2.0301    24.602  49.29
+   3   1.5851     41.830  1.7547    34.704  72.76
+   4   1.4438     47.040  1.5510    42.678  96.24
+   5   1.3553     50.010  1.4096    48.434  119.72
+   6   1.2293     55.410  1.3006    52.540  143.17
