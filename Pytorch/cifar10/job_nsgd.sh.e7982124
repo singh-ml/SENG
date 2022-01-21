@@ -1,0 +1,24 @@
+/etc/shinit_v2: line 3: sed: command not found
+/etc/shinit_v2: line 8: hostname: command not found
+/etc/shinit_v2: line 42: dpkg: command not found
+/uge_mnt/var/spool/uge/dl-gtb01/job_scripts/7982124: line 8: bash: command not found
+Traceback (most recent call last):
+  File "/uge_mnt/home/dinesh/SENG/Pytorch/cifar10/main_nsgd.py", line 344, in <module>
+    main()
+  File "/uge_mnt/home/dinesh/SENG/Pytorch/cifar10/main_nsgd.py", line 133, in main
+    main_worker(args.gpu, ngpus_per_node, args)
+  File "/uge_mnt/home/dinesh/SENG/Pytorch/cifar10/main_nsgd.py", line 326, in main_worker
+    train_loss, train_acc = train(epoch)
+  File "/uge_mnt/home/dinesh/SENG/Pytorch/cifar10/main_nsgd.py", line 265, in train
+    gradloader = torch.utils.data.DataLoader(trainsetS, batch_size=args.bh, shuffle=True, num_workers=2)
+  File "/uge_mnt/home/dinesh/anaconda3/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 268, in __init__
+    sampler = RandomSampler(dataset, generator=generator)
+  File "/uge_mnt/home/dinesh/anaconda3/lib/python3.9/site-packages/torch/utils/data/sampler.py", line 101, in __init__
+    if not isinstance(self.num_samples, int) or self.num_samples <= 0:
+  File "/uge_mnt/home/dinesh/anaconda3/lib/python3.9/site-packages/torch/utils/data/sampler.py", line 109, in num_samples
+    return len(self.data_source)
+  File "/uge_mnt/home/dinesh/anaconda3/lib/python3.9/site-packages/torch/utils/data/dataset.py", line 366, in __len__
+    return len(self.indices)
+  File "/uge_mnt/home/dinesh/anaconda3/lib/python3.9/site-packages/torch/_tensor.py", line 624, in __len__
+    raise TypeError("len() of a 0-d tensor")
+TypeError: len() of a 0-d tensor

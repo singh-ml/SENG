@@ -6,7 +6,7 @@ Files already downloaded and verified
 Files already downloaded and verified
 Memory peak: 14294487040 Bytes
 Epoch  testloss  testacc  trainloss  trainacc  time
-   1   15515649.7500      1.010  82818340.6353     0.970  65.37
-info: 125
+   1   5929925.6125      1.370  48491962.8819     1.054  66.24
+info: 60
 , submat: 255
-info: 1048447
+info: 1046398

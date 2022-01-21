@@ -50,6 +50,7 @@ parser.add_argument('--datadir', default='/datasets', help='Place where data are
 parser.add_argument('--lr', default=0.05, type=float, help='learning rate')
 parser.add_argument('--irho', default=10.0, type=float, help='inverse rho')
 parser.add_argument('--bh', default=32, type=int, help='hessian batch size')
+parser.add_argument('--frac', default=0.05, type=float, help='fraction of data for computing C')
 parser.add_argument('--lr-decay-epoch', default=30, type=int, help='learning rate decay at n epoches')
 parser.add_argument('--lr-decay-rate', default=0.1, type=float, help='how much learning rate decays')
 parser.add_argument('--lr-scheme', default='staircase', type=str, help='how much learning rate decays')
@@ -261,7 +262,7 @@ def main_worker(gpu, ngpus_per_node, args):
         correct = 0
         total = 0
         epoch_start_time = time.time()
-        trainsetS = torch.utils.data.Subset(trainset, range(args.batch_size*2))
+        trainsetS = torch.utils.data.Subset(trainset, torch.randperm(len(trainset))[:int(len(trainset)*args.frac)])
         gradloader = torch.utils.data.DataLoader(trainsetS, batch_size=args.bh, shuffle=True, num_workers=2)
         preconditionar.nyscurve(gradloader, net, criterion, device='cuda')
         for batch_idx, (inputs, targets) in enumerate(trainloader):

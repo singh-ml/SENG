@@ -83,7 +83,7 @@ count_file()
 for ds in 'cifar10' 'cifar100'
 do
 	echo $ds
-	for a in 'vgg16_bn' 'vgg16' 'resnet50'
+	for a in 'vgg16_bn' 'vgg16' 'resnet18' 'resnet50'
 	do
 		echo -e "\t "$a
 		for p in 'nsgd' 'sgd' 'adam' 'kfac' 'ekfac' 'lbfgs' 'seng'

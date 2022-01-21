@@ -6,12 +6,8 @@ Files already downloaded and verified
 Files already downloaded and verified
 Memory peak: 14137708544 Bytes
 Epoch  testloss  testacc  trainloss  trainacc  time
-   1   4.6118      1.000  4.6163     0.950  64.66
-   2      nan      1.000     nan     1.012  126.54
-
-Intel MKL ERROR: Parameter 4 was incorrect on entry to SLASCL.
-
-Intel MKL ERROR: Parameter 4 was incorrect on entry to SLASCL.
-info: 127
+   1   4.6137      1.000  4.6149     0.918  64.94
+   2   4.6140      1.000  4.6146     0.938  126.68
+info: 71
 , submat: 0
-info: 4225
+info: 217
