@@ -6,7 +6,7 @@ do
 		do
 			for m in 10 20 24
 			do
-				python main_lbfgs.py --epoch $me --arch 'resnet18' --lr-decay-epoch $me -m $m --trainset 'cifar100' --datadir /data/singh/data/ --lr $lr --weight-decay $wd --lr-scheme 'cosine' --gpu 3| tee lbfgs_cifar100-resnet18-lr$lr-me$me-wd$wd-m$m.hist
+				python main_lbfgs.py --epoch $me --arch 'resnet18' --lr-decay-epoch $me -m $m --trainset 'cifar100' --datadir /data/singh/data/ --lr $lr --weight-decay $wd --lr-scheme 'cosine' --gpu 2| tee lbfgs_cifar100-resnet18-lr$lr-me$me-wd$wd-m$m.hist
 			done
 		done
 	done

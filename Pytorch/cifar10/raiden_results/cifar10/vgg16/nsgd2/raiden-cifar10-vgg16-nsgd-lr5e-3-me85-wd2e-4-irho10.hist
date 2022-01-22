@@ -1,0 +1,15 @@
+Use GPU: 0 for training
+==> Running with ['main_nsgd.py', '--epoch', '85', '--arch', 'vgg16', '--lr-decay-epoch', '85', '--bh', '32', '--irho', '10', '--trainset', 'cifar10', '--datadir', '/data/ghighdim/singh/data/', '--lr', '5e-3', '--weight-decay', '2e-4', '--lr-scheme', 'cosine', '--gpu', '0']
+==> Building model..
+==> Preparing data..
+Files already downloaded and verified
+Files already downloaded and verified
+Memory peak: 50581342720 Bytes
+Epoch  testloss  testacc  trainloss  trainacc  time
+   1   2.0582     19.320  2.2363    13.666  30.60
+   2   1.7229     32.830  1.9142    24.114  57.29
+   3   1.6252     38.900  1.6950    33.928  82.41
+   4   1.3935     50.610  1.4998    43.598  109.34
+   5   1.1716     58.100  1.3042    52.984  136.22
+   6   1.2704     56.520  1.0990    61.134  164.65
+   7   0.8603     70.590  0.9685    66.474  193.14

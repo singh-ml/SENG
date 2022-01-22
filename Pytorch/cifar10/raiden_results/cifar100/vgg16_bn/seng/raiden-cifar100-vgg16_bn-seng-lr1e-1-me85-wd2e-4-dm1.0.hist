@@ -1,0 +1,93 @@
+Use GPU: 0 for training
+==> Running with ['main_seng.py', '--epoch', '85', '--arch', 'vgg16_bn', '--lr-decay-epoch', '85', '--damping', '1.0', '--trainset', 'cifar100', '--datadir', '/data/ghighdim/singh/data/', '--lr', '1e-1', '--weight-decay', '2e-4', '--lr-scheme', 'cosine', '--gpu', '0']
+==> Building model..
+==> Preparing data..
+Files already downloaded and verified
+Files already downloaded and verified
+Memory peak: 7998862336 Bytes
+Epoch  testloss  testacc  trainloss  trainacc  time
+   1      nan      1.000     nan     1.022  7.85
+   2      nan      1.000     nan     1.000  13.82
+   3      nan      1.000     nan     1.000  19.76
+   4      nan      1.000     nan     1.000  25.72
+   5      nan      1.000     nan     1.000  31.85
+   6      nan      1.000     nan     1.000  37.79
+   7      nan      1.000     nan     1.000  43.73
+   8      nan      1.000     nan     1.000  49.68
+   9      nan      1.000     nan     1.000  55.62
+  10      nan      1.000     nan     1.000  61.56
+  11      nan      1.000     nan     1.000  67.49
+  12      nan      1.000     nan     1.000  73.41
+  13      nan      1.000     nan     1.000  79.37
+  14      nan      1.000     nan     1.000  85.33
+  15      nan      1.000     nan     1.000  91.28
+  16      nan      1.000     nan     1.000  97.24
+  17      nan      1.000     nan     1.000  103.21
+  18      nan      1.000     nan     1.000  109.18
+  19      nan      1.000     nan     1.000  115.16
+  20      nan      1.000     nan     1.000  121.10
+  21      nan      1.000     nan     1.000  127.04
+  22      nan      1.000     nan     1.000  133.01
+  23      nan      1.000     nan     1.000  138.98
+  24      nan      1.000     nan     1.000  145.10
+  25      nan      1.000     nan     1.000  151.03
+  26      nan      1.000     nan     1.000  157.00
+  27      nan      1.000     nan     1.000  162.98
+  28      nan      1.000     nan     1.000  168.92
+  29      nan      1.000     nan     1.000  174.87
+  30      nan      1.000     nan     1.000  180.96
+  31      nan      1.000     nan     1.000  186.88
+  32      nan      1.000     nan     1.000  192.82
+  33      nan      1.000     nan     1.000  198.75
+  34      nan      1.000     nan     1.000  204.67
+  35      nan      1.000     nan     1.000  210.59
+  36      nan      1.000     nan     1.000  216.69
+  37      nan      1.000     nan     1.000  222.65
+  38      nan      1.000     nan     1.000  228.61
+  39      nan      1.000     nan     1.000  235.15
+  40      nan      1.000     nan     1.000  241.09
+  41      nan      1.000     nan     1.000  247.02
+  42      nan      1.000     nan     1.000  252.98
+  43      nan      1.000     nan     1.000  259.05
+  44      nan      1.000     nan     1.000  265.02
+  45      nan      1.000     nan     1.000  270.98
+  46      nan      1.000     nan     1.000  276.92
+  47      nan      1.000     nan     1.000  282.86
+  48      nan      1.000     nan     1.000  288.77
+  49      nan      1.000     nan     1.000  294.83
+  50      nan      1.000     nan     1.000  300.72
+  51      nan      1.000     nan     1.000  306.69
+  52      nan      1.000     nan     1.000  312.84
+  53      nan      1.000     nan     1.000  318.78
+  54      nan      1.000     nan     1.000  324.70
+  55      nan      1.000     nan     1.000  330.79
+  56      nan      1.000     nan     1.000  336.72
+  57      nan      1.000     nan     1.000  342.66
+  58      nan      1.000     nan     1.000  348.58
+  59      nan      1.000     nan     1.000  354.53
+  60      nan      1.000     nan     1.000  360.46
+  61      nan      1.000     nan     1.000  366.42
+  62      nan      1.000     nan     1.000  372.53
+  63      nan      1.000     nan     1.000  378.49
+  64      nan      1.000     nan     1.000  384.42
+  65      nan      1.000     nan     1.000  390.36
+  66      nan      1.000     nan     1.000  396.30
+  67      nan      1.000     nan     1.000  402.35
+  68      nan      1.000     nan     1.000  408.43
+  69      nan      1.000     nan     1.000  414.39
+  70      nan      1.000     nan     1.000  420.33
+  71      nan      1.000     nan     1.000  426.26
+  72      nan      1.000     nan     1.000  432.25
+  73      nan      1.000     nan     1.000  438.17
+  74      nan      1.000     nan     1.000  444.11
+  75      nan      1.000     nan     1.000  450.22
+  76      nan      1.000     nan     1.000  456.15
+  77      nan      1.000     nan     1.000  462.11
+  78      nan      1.000     nan     1.000  468.05
+  79      nan      1.000     nan     1.000  473.97
+  80      nan      1.000     nan     1.000  479.92
+  81      nan      1.000     nan     1.000  485.85
+  82      nan      1.000     nan     1.000  491.93
+  83      nan      1.000     nan     1.000  497.90
+  84      nan      1.000     nan     1.000  503.82
+  85      nan      1.000     nan     1.000  509.78

@@ -262,7 +262,7 @@ class EKFAC(Optimizer):
             ones = torch.ones_like(x[:1])
             x = torch.cat([x, ones], dim=0)
         xxt = torch.mm(x, x.t()) / float(x.shape[1])
-        Ex, state['kfe_x'] = torch.symeig(xxt, eigenvectors=True)
+        Ex, state['kfe_x'] = torch.linalg.eigh(xxt)
         # Computation of ggt
         if group['layer_type'] == 'Conv2dEx':
             gy = gy.data.permute(1, 0, 2, 3)

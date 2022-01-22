@@ -1,0 +1,16 @@
+Use GPU: 0 for training
+==> Running with ['main_ekfac.py', '--epoch', '90', '--arch', 'vgg16', '--lr-decay-epoch', '90', '--damping', '0.8', '--trainset', 'cifar100', '--datadir', '/data/ghighdim/singh/data/', '--lr', '1e-2', '--weight-decay', '5e-4', '--lr-scheme', 'cosine', '--gpu', '0']
+==> Building model..
+==> Preparing data..
+Files already downloaded and verified
+Files already downloaded and verified
+Memory peak: 14137708544 Bytes
+Epoch  testloss  testacc  trainloss  trainacc  time
+   1   4.4303      2.910  4.5514     1.606  64.88
+   2   4.1047      5.110  4.2486     3.878  128.05
+   3   3.8576      7.720  3.9751     6.482  191.05
+   4   3.6853     10.960  3.8138     8.986  254.18
+   5   3.4477     15.030  3.6157    12.120  317.27
+   6   3.3072     16.900  3.3934    16.054  380.30
+   7   3.0364     22.570  3.1644    20.156  443.36
+   8      nan      1.000     nan     4.062  505.85
