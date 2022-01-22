@@ -6,7 +6,7 @@
 #$ -v PATH=/home/dinesh/anaconda3/bin:$PATH
 
 bash nvcr-pytorch-2112.sh
-frac=1.0
+frac=0.01
 for lr in $1
 do
 	for me in $4
