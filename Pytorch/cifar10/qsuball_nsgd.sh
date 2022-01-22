@@ -13,9 +13,12 @@ do
 	do
 		for wd in 5e-4 2e-4 1e-4
 		do
-			for irho in 1000 100 50 20
+			for irho in 1000 100 50 20 10 5 2 1
 			do
-				qsub job_nsgd.sh $lr vgg16_bn cifar10 $me $wd $irho
+				qsub job_nsgd.sh $lr vgg16_bn mnist $me $wd $irho
+                                qsub job_nsgd.sh $lr vgg16 mnist $me $wd $irho
+                                qsub job_nsgd.sh $lr resnet18 mnist $me $wd $irho
+                                qsub job_nsgd.sh $lr resnet50 mnist $me $wd $irho
 			done
 		done
 	done
