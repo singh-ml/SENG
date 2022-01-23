@@ -6,7 +6,6 @@
 #$ -v PATH=/home/dinesh/anaconda3/bin:$PATH
 
 bash nvcr-pytorch-2112.sh
-frac=0.01
 for lr in 1e-3 5e-3 1e-2 5e-2 1e-1
 do
 	for me in 85 90

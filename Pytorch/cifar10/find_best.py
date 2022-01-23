@@ -119,7 +119,7 @@ for m in ['sgd', 'adam', 'kfac', 'ekfac', 'seng', 'nsgd']:
         print(max_f[m])
 
 for (yp, ypi) in [('trainloss',3), ('trainacc',4), ('testloss',1), ('testacc',2)]:
-    for m in ['sgd', 'adam', 'kfac', 'ekfac', 'seng', 'nsgd']:
+    for m in ['sgd', 'adam', 'lbfgs', 'kfac', 'ekfac', 'seng', 'nsgd']:
         if m in max_f.keys():
             labels.append(m)
             d = np.loadtxt(max_f[m], skiprows=8)

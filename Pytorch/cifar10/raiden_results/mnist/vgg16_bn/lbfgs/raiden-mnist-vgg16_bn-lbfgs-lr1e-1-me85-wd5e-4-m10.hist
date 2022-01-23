@@ -1,0 +1,4 @@
+Use GPU: 0 for training
+==> Running with ['main_lbfgs.py', '--epoch', '85', '--arch', 'vgg16_bn', '--lr-decay-epoch', '85', '-m', '10', '--trainset', 'mnist', '--datadir', '/data/ghighdim/singh/data/', '--lr', '1e-1', '--weight-decay', '5e-4', '--lr-scheme', 'cosine', '--gpu', '0']
+==> Building model..
+==> Preparing data..

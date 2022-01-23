@@ -69,7 +69,7 @@ parser.add_argument('--gpu', default=None, type=int, help='GPU id to use')
 parser.add_argument('-j', '--workers', default=4, type=int, metavar='N',
                     help='number of data loading workers (default: 4)')
 parser.add_argument('--trainset', default='cifar10',
-                    choices=['cifar10', 'cifar100','imagenette'],
+                    choices=['mnist', 'cifar10', 'cifar100','imagenette'],
                     help='training dataset')
 parser.add_argument('--arch', default='vgg16_bn',
                     choices=['vgg16', 'vgg16_bn', 'resnet50', 'resnet18'],
@@ -165,7 +165,7 @@ def main_worker(gpu, ngpus_per_node, args):
     else:
         datamean = (0.5, 0.5, 0.5)
         datastd = (0.5, 0.5, 0.5)
-    	num_classes = 10
+        num_classes = 10
 
     if args.arch == 'resnet50':
         net = resnet50(num_classes=num_classes)
@@ -220,15 +220,16 @@ def main_worker(gpu, ngpus_per_node, args):
         ]))
     elif args.trainset == 'mnist':
         transform_train = transforms.Compose([
-            transforms.RandomCrop(32, padding=4),
+            transforms.RandomCrop(28, padding=4),
             transforms.RandomHorizontalFlip(),
             transforms.ToTensor(),
-            transforms.Lambda(lambda x: x.repeat(3,1,1))
+            transforms.Lambda(lambda x: x.repeat(3,1,1)),
             transforms.Normalize(datamean, datastd),
         ])
 
         transform_test = transforms.Compose([
             transforms.ToTensor(),
+            transforms.Lambda(lambda x: x.repeat(3,1,1)),
             transforms.Normalize(datamean, datastd),
         ])
     else:

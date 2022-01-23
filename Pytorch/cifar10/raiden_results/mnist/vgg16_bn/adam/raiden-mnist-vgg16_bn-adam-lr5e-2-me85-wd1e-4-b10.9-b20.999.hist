@@ -1,0 +1,4 @@
+Use GPU: 0 for training
+==> Running with ['main_adam.py', '--epoch', '85', '--arch', 'vgg16_bn', '--lr-decay-epoch', '85', '--trainset', 'mnist', '--datadir', '/data/ghighdim/singh/data/', '--lr', '5e-2', '--weight-decay', '1e-4', '--beta1', '0.9', '--beta2', '0.999', '--gpu', '0']
+==> Building model..
+==> Preparing data..

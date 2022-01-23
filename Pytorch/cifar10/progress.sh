@@ -52,7 +52,7 @@ count_file()
 				for irho in 10 5 2
                                 do
 				        t=$((t+1))
-                                        if test -f raiden_results/$1/$2/$3/raiden-$1-$2-$3-lr$lr-me$me-wd$wd-irho$irho.hist; then
+                                        if test -f raiden_results/$1/$2/$3/raiden-$1-$2-$3-lr$lr-me$me-wd$wd-irho$irho-frac0.01.hist; then
                                                 c=$((c+1))
                                         fi
                                 done
@@ -80,7 +80,7 @@ count_file()
 	#return "$t" "$c"
 }
 
-for ds in 'cifar10' 'cifar100'
+for ds in 'mnist' #'cifar10' 'cifar100'
 do
 	echo $ds
 	for a in 'vgg16_bn' 'vgg16' 'resnet18' 'resnet50'
