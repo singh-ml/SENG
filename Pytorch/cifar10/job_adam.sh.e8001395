@@ -1,4 +1,0 @@
-/etc/shinit_v2: line 3: sed: command not found
-/etc/shinit_v2: line 8: hostname: command not found
-/etc/shinit_v2: line 42: dpkg: command not found
-/uge_mnt/var/spool/uge/dl-gtn01/job_scripts/8001395: line 8: bash: command not found

@@ -17,14 +17,18 @@ else:
 
 sign=1
 if yp == 'testloss':
+    ylabel = 'Test Loss (log scale)'
     ypi = 1
     sign=-1
 if yp == 'testacc':
+    ylabel = 'Test Acc'
     ypi = 2
 if yp == 'trainloss':
+    ylabel = 'Train Loss (log scale)'
     ypi = 3
     sign=-1
 if yp == 'trainacc':
+    ylabel = 'Train Loss'
     ypi = 4
 
 line_type = {
@@ -119,9 +123,17 @@ for m in ['sgd', 'adam', 'kfac', 'ekfac', 'seng', 'nsgd']:
         print(max_f[m])
 
 for (yp, ypi) in [('trainloss',3), ('trainacc',4), ('testloss',1), ('testacc',2)]:
+    if yp == 'testloss':
+        ylabel = 'Test Loss (log scale)'
+    if yp == 'testacc':
+        ylabel = 'Test Acc'
+    if yp == 'trainloss':
+        ylabel = 'Train Loss (log scale)'
+    if yp == 'trainacc':
+        ylabel = 'Train Acc'
     for m in ['sgd', 'adam', 'lbfgs', 'kfac', 'ekfac', 'seng', 'nsgd']:
         if m in max_f.keys():
-            labels.append(m)
+            labels.append(m.upper())
             d = np.loadtxt(max_f[m], skiprows=8)
             if ypi==1 or ypi==3:
                 plt.plot(d[:, xpi], np.log(d[:, ypi]), line_type[m])
@@ -130,6 +142,8 @@ for (yp, ypi) in [('trainloss',3), ('trainacc',4), ('testloss',1), ('testacc',2)
     plt.legend(labels)
     plt.title(ds+' - '+arch)
     plt.xlabel('Epoch')
-    plt.ylabel(yp)
+    plt.ylabel(ylabel)
+    #plt.savefig(ds+'_'+arch+'_'+yp+'_'+xp+'_'+sys.argv[4]+'.eps')
+    #plt.clf()
     plt.show()
 
