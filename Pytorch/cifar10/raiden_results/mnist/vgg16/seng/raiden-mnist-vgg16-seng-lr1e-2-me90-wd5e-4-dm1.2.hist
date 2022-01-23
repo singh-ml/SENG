@@ -1,0 +1,4 @@
+Use GPU: 0 for training
+==> Running with ['main_seng.py', '--epoch', '90', '--arch', 'vgg16', '--lr-decay-epoch', '90', '--damping', '1.2', '--trainset', 'mnist', '--datadir', '/data/ghighdim/singh/data/', '--lr', '1e-2', '--weight-decay', '5e-4', '--lr-scheme', 'cosine', '--gpu', '0']
+==> Building model..
+==> Preparing data..

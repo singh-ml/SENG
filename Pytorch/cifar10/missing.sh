@@ -91,13 +91,13 @@ count_file()
 	#return "$t" "$c"
 }
 
-for ds in 'cifar10' 'cifar100'
+for ds in 'mnist' #'cifar10' 'cifar100'
 do
 	echo $ds
 	for a in 'resnet18' 'vgg16_bn' 'vgg16' 'resnet50'
 	do
 		echo -e "\t "$a
-		for p in 'nsgd' #'nsgd' 'sgd' 'adam' 'kfac' 'ekfac' 'lbfgs' 'seng'
+		for p in 'sgd' 'adam' 'kfac' 'ekfac' 'lbfgs' 'seng'
 		do
 			count_file $ds $a $p
 			#tf=$((tf+t))

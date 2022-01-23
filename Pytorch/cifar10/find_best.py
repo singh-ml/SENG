@@ -81,8 +81,8 @@ for m in ['sgd', 'adam', 'kfac', 'ekfac', 'seng', 'nsgd']:
                                 max_v[m] = max_
                                 max_f[m] = fn
                 elif m == 'nsgd':
-                    for irho in ['10', '5', '2']:
-                        fn = 'raiden_results/' + ds + '/' + arch + '/' + m + '/raiden-' + ds + '-' + arch + '-' + m + '-lr' + lr + '-me' + me + '-wd' + wd + '-irho' + irho + '.hist'
+                    for irho in ['1000', '100', '50', '20', '10', '5', '2']:
+                        fn = 'raiden_results/' + ds + '/' + arch + '/' + m + '/raiden-' + ds + '-' + arch + '-' + m + '-lr' + lr + '-me' + me + '-wd' + wd + '-irho' + irho + '-frac0.01.hist'
                         if not os.path.isfile(fn):
                             continue
                         num_lines = sum(1 for line in open(fn))
@@ -131,7 +131,7 @@ for (yp, ypi) in [('trainloss',3), ('trainacc',4), ('testloss',1), ('testacc',2)
         ylabel = 'Train Loss (log scale)'
     if yp == 'trainacc':
         ylabel = 'Train Acc'
-    for m in ['sgd', 'adam', 'kfac', 'ekfac', 'seng', 'nsgd']:
+    for m in ['sgd', 'adam', 'lbfgs', 'kfac', 'ekfac', 'seng', 'nsgd']:
         if m in max_f.keys():
             labels.append(m.upper())
             d = np.loadtxt(max_f[m], skiprows=8)
