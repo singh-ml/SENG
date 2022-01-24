@@ -59,7 +59,7 @@ for m in ['sgd', 'adam', 'kfac', 'ekfac', 'seng', 'nsgd']:
                         continue
                     
                     num_lines = sum(1 for line in open(fn))
-                    if num_lines!=93 and num_lines!=98:
+                    if num_lines!=93 and num_lines!=98 and num_lines!=91 and num_lines!=96:
                         continue
                     d = np.loadtxt(fn, skiprows=8)
                     max_ = np.max(sign*d)
@@ -73,7 +73,7 @@ for m in ['sgd', 'adam', 'kfac', 'ekfac', 'seng', 'nsgd']:
                             if not os.path.isfile(fn):
                                 continue
                             num_lines = sum(1 for line in open(fn))
-                            if num_lines!=93 and num_lines!=98:
+                            if num_lines!=93 and num_lines!=98 and num_lines!=91 and num_lines!=96:
                                 continue
                             d = np.loadtxt(fn, skiprows=8)
                             max_ = np.max(sign*d)
@@ -86,7 +86,7 @@ for m in ['sgd', 'adam', 'kfac', 'ekfac', 'seng', 'nsgd']:
                         if not os.path.isfile(fn):
                             continue
                         num_lines = sum(1 for line in open(fn))
-                        if num_lines!=93 and num_lines!=98:
+                        if num_lines!=93 and num_lines!=98 and num_lines!=91 and num_lines!=96:
                             continue
                         d = np.loadtxt(fn, skiprows=8)
                         max_ = np.max(sign*d)
@@ -99,7 +99,7 @@ for m in ['sgd', 'adam', 'kfac', 'ekfac', 'seng', 'nsgd']:
                         if not os.path.isfile(fn):
                             continue
                         num_lines = sum(1 for line in open(fn))
-                        if num_lines!=93 and num_lines!=98:
+                        if num_lines!=93 and num_lines!=98 and num_lines!=91 and num_lines!=96:
                             continue
                         d = np.loadtxt(fn, skiprows=8)
                         max_ = np.max(sign*d)
@@ -112,7 +112,7 @@ for m in ['sgd', 'adam', 'kfac', 'ekfac', 'seng', 'nsgd']:
                         if not os.path.isfile(fn):
                             continue
                         num_lines = sum(1 for line in open(fn))
-                        if num_lines!=93 and num_lines!=98:
+                        if num_lines!=93 and num_lines!=98 and num_lines!=91 and num_lines!=96:
                             continue
                         d = np.loadtxt(fn, skiprows=8)
                         max_ = np.max(sign*d)
