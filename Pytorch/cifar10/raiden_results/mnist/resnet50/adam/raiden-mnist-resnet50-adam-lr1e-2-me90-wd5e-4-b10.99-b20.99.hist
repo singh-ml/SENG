@@ -1,0 +1,12 @@
+Use GPU: 0 for training
+==> Running with ['main_adam.py', '--epoch', '90', '--arch', 'resnet50', '--lr-decay-epoch', '90', '--trainset', 'mnist', '--datadir', '/data/ghighdim/singh/data/', '--lr', '1e-2', '--weight-decay', '5e-4', '--beta1', '0.99', '--beta2', '0.99', '--gpu', '0']
+==> Building model..
+==> Preparing data..
+Memory peak: 13828049408 Bytes
+Epoch  testloss  testacc  trainloss  trainacc  time
+   1   0.6200     79.530  2.1934    27.097  25.37
+   2   0.2099     93.420  0.3136    89.983  48.45
+   3   0.1135     96.500  0.1616    95.003  71.52
+   4   0.0981     96.760  0.1230    96.238  94.59
+   5   0.1041     96.710  0.1056    96.760  117.64
+   6   0.0877     97.300  0.0985    97.010  140.72
