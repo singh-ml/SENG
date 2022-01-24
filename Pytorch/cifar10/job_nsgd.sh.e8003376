@@ -1,0 +1,6 @@
+/etc/shinit_v2: line 3: sed: command not found
+/etc/shinit_v2: line 8: hostname: command not found
+/etc/shinit_v2: line 42: dpkg: command not found
+/uge_mnt/var/spool/uge/dl-gtb01/job_scripts/8003376: line 8: bash: command not found
+/uge_mnt/home/dinesh/SENG/Pytorch/cifar10/nsgd.py:43: UserWarning: torch.matrix_rank is deprecated in favor of torch.linalg.matrix_rankand will be removed in a future PyTorch release. The parameter 'symmetric' was renamed in torch.linalg.matrix_rank to 'hermitian'. (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180487213/work/aten/src/ATen/native/LinearAlgebra.cpp:473.)
+  rnk = torch.matrix_rank(M)
