@@ -263,7 +263,7 @@ def main_worker(gpu, ngpus_per_node, args):
         criterion = LabelSmoothingLoss(args.label_smoothing).cuda(args.gpu)
     else:
         criterion = nn.CrossEntropyLoss().cuda(args.gpu)
-    optimizer = Adahessian(net.parameters(), lr=args.lr, momentum=args.momentum, weight_decay=args.weight_decay)
+    optimizer = Adahessian(net.parameters(), lr=args.lr, weight_decay=args.weight_decay)
     
     pending_batch = None
 

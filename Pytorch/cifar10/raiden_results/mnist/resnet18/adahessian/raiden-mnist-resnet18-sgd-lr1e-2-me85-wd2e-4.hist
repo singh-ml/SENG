@@ -1,0 +1,10 @@
+Use GPU: 0 for training
+==> Running with ['main_adahessian.py', '--epoch', '85', '--arch', 'resnet18', '--lr-decay-epoch', '85', '--trainset', 'mnist', '--datadir', '/data/ghighdim/singh/data/', '--lr', '1e-2', '--weight-decay', '2e-4', '--lr-scheme', 'cosine', '--gpu', '0']
+==> Building model..
+==> Preparing data..
+Memory peak: 6742119936 Bytes
+Epoch  testloss  testacc  trainloss  trainacc  time
+   1   0.2466     91.540  0.5380    82.712  30.49
+   2   0.1079     96.420  0.1090    96.715  58.94
+   3   0.1353     95.460  0.0764    97.625  87.44
+   4   0.0843     97.120  0.0650    97.885  115.93

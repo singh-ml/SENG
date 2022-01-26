@@ -1,0 +1,6 @@
+Use GPU: 0 for training
+==> Running with ['main_adahessian.py', '--epoch', '90', '--arch', 'resnet18', '--lr-decay-epoch', '90', '--trainset', 'cifar10', '--datadir', '/data/ghighdim/singh/data/', '--lr', '1e-1', '--weight-decay', '5e-4', '--lr-scheme', 'cosine', '--gpu', '0']
+==> Building model..
+==> Preparing data..
+Files already downloaded and verified
+Files already downloaded and verified
