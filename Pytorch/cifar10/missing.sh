@@ -67,7 +67,7 @@ count_file()
 		'nsgd')
                         for lr in 1e-3 5e-3 1e-2 5e-2 1e-1
                         do
-				for irho in 10 5 2
+				for irho in 1 10 5 2
                                 do
 				        t=$((t+1))
                                         if test -f raiden_results/$1/$2/$3/raiden-$1-$2-$3-lr$lr-me$me-wd$wd-irho$irho.hist; then
@@ -108,7 +108,7 @@ do
 	for a in 'resnet18' 'vgg16_bn' 'resnet50'
 	do
 		echo -e "\t "$a
-		for p in 'adahessian' #'sgd' 'adam' 'kfac' 'ekfac' 'lbfgs' 'seng'
+		for p in 'adahessian' #'nsgd' 'sgd' 'adam' 'kfac' 'ekfac' 'lbfgs' 'seng'
 		do
 			count_file $ds $a $p
 			#tf=$((tf+t))

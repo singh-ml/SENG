@@ -81,7 +81,7 @@ for m in ['sgd', 'adam', 'kfac', 'ekfac', 'seng', 'nsgd']:
                                 max_v[m] = max_
                                 max_f[m] = fn
                 elif m == 'nsgd':
-                    for irho in ['1000', '100', '50', '20', '10', '5', '2']:
+                    for irho in ['1000', '100', '50', '20', '10', '5', '2', '1']:
                         fn = 'raiden_results/' + ds + '/' + arch + '/' + m + '/raiden-' + ds + '-' + arch + '-' + m + '-lr' + lr + '-me' + me + '-wd' + wd + '-irho' + irho + '-frac0.01.hist'
                         if not os.path.isfile(fn):
                             continue
