@@ -21,6 +21,17 @@ count_file()
                                 fi
 			done
 			;;
+                'adahessian')
+                        for lr in 1e-3 5e-3 1e-2 5e-2 1e-1
+                        do
+                                t=$((t+1))
+                                if test -f raiden_results/$1/$2/$3/raiden-$1-$2-$3-lr$lr-me$me-wd$wd.hist; then
+                                        c=$((c+1))
+                                else
+                                        qsub job_$3.sh $lr $2 $1 $me $wd
+                                fi
+                        done
+                        ;;
 		'adam')
                         for lr in 1e-4 2e-4 5e-4 1e-3 5e-3 1e-2 5e-2 1e-1
                         do
@@ -91,13 +102,13 @@ count_file()
 	#return "$t" "$c"
 }
 
-for ds in 'mnist' #'cifar10' 'cifar100'
+for ds in 'mnist' 'cifar10' 'cifar100'
 do
 	echo $ds
-	for a in 'resnet18' 'vgg16_bn' 'vgg16' 'resnet50'
+	for a in 'resnet18' 'vgg16_bn' 'resnet50'
 	do
 		echo -e "\t "$a
-		for p in 'nsgd' #'sgd' 'adam' 'kfac' 'ekfac' 'lbfgs' 'seng'
+		for p in 'adahessian' #'nsgd' 'sgd' 'adam' 'kfac' 'ekfac' 'lbfgs' 'seng'
 		do
 			count_file $ds $a $p
 			#tf=$((tf+t))
