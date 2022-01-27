@@ -67,7 +67,7 @@ parser.add_argument('--gpu', default=None, type=int, help='GPU id to use')
 parser.add_argument('-j', '--workers', default=4, type=int, metavar='N',
                     help='number of data loading workers (default: 4)')
 parser.add_argument('--trainset', default='cifar10',
-                    choices=['cifar10', 'cifar100','imagenette'],
+                    choices=['mnist', 'cifar10', 'cifar100','imagenette'],
                     help='training dataset')
 parser.add_argument('--arch', default='vgg16_bn',
                     choices=['vgg16', 'vgg16_bn', 'resnet50', 'resnet18'],
@@ -153,15 +153,17 @@ def main_worker(gpu, ngpus_per_node, args):
     rank0_print('==> Building model..')
 
     if args.trainset == 'cifar10' or args.trainset=='imagenette':
-        datamean = (0.4914, 0.4822, 0.4465)
-        datastd = (0.2470, 0.2435, 0.2616)
+        datamean = (0.5, 0.5, 0.5) #(0.4914, 0.4822, 0.4465)
+        datastd = (0.5, 0.5, 0.5) #(0.2470, 0.2435, 0.2616)
         num_classes = 10
     elif args.trainset == 'cifar100':
-        datamean = (0.5071, 0.4867, 0.4408)
-        datastd = (0.2675, 0.2565, 0.2761)
+        datamean = (0.5, 0.5, 0.5) #(0.5071, 0.4867, 0.4408)
+        datastd = (0.5, 0.5, 0.5) #(0.2675, 0.2565, 0.2761)
         num_classes = 100
     else:
-    	num_classes = 10
+        datamean = (0.5, 0.5, 0.5)
+        datastd = (0.5, 0.5, 0.5)
+        num_classes = 10
 
     if args.arch == 'resnet50':
         net = resnet50(num_classes=num_classes)
@@ -214,6 +216,20 @@ def main_worker(gpu, ngpus_per_node, args):
             transforms.ToTensor(),
             normalize,
         ]))
+    elif args.trainset == 'mnist':
+        transform_train = transforms.Compose([
+            transforms.RandomCrop(28, padding=4),
+            transforms.RandomHorizontalFlip(),
+            transforms.ToTensor(),
+            transforms.Lambda(lambda x: x.repeat(3,1,1)),
+            transforms.Normalize(datamean, datastd),
+        ])
+
+        transform_test = transforms.Compose([
+            transforms.ToTensor(),
+            transforms.Lambda(lambda x: x.repeat(3,1,1)),
+            transforms.Normalize(datamean, datastd),
+        ])
     else:
         transform_train = transforms.Compose([
             transforms.RandomCrop(32, padding=4),
@@ -233,7 +249,9 @@ def main_worker(gpu, ngpus_per_node, args):
     elif args.trainset == 'cifar100':
         trainset = torchvision.datasets.CIFAR100(root=args.datadir, train=True, download=True, transform=transform_train)
         testset = torchvision.datasets.CIFAR100(root=args.datadir, train=False, download=True, transform=transform_test)
-
+    elif args.trainset == 'mnist':
+        trainset = torchvision.datasets.MNIST(root=args.datadir, train=True, download=True, transform=transform_train)
+        testset = torchvision.datasets.MNIST(root=args.datadir, train=False, download=True, transform=transform_test)
 
     if args.distributed:
         train_sampler = torch.utils.data.distributed.DistributedSampler(trainset)
